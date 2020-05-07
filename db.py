@@ -1,7 +1,7 @@
 from datetime import datetime
 from pymongo import MongoClient, ReturnDocument
 from config import DB_PASS
-from bson import ObjectId
+from bson.objectid import ObjectId
 
 # binary options trading database api functions
 class BinaryDB:
