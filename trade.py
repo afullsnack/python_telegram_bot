@@ -59,10 +59,10 @@ class Trade:
 
         if(self.current_quote > self.bet_quote):
             new_balance = ((self.trading_amt*perc_profit)/100) + self.total_bal
-            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L:  <b>+"+ str(((self.trading_amt*perc_profit)/100)) + " ("+str(perc_profit)+")</b>\n\nNGN BALANCE: " + str(new_balance)
+            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L:  <b>+"+ str(((self.trading_amt*perc_profit)/100)) + " ("+str(perc_profit)+"%)</b>\n\nNEW BALANCE: " + str(new_balance)
         else:
             new_balance = (self.total_bal - self.trading_amt)
-            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L:  <b>-"+ str(self.trading_amt) + "</b>\n\nNGN BALANCE: " + str(new_balance)
+            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L:  <b>-"+ str(self.trading_amt) + "</b>\n\nNEW BALANCE: " + str(new_balance)
 
         return { "state": state, "new_balance": new_balance }
 
@@ -75,10 +75,10 @@ class Trade:
 
         if(self.current_quote < self.bet_quote):
             new_balance = ((self.trading_amt*perc_profit)/100) + self.total_bal
-            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L: <b>+"+ str(((self.trading_amt*perc_profit)/100)) + " ("+str(perc_profit)+")</b>\n\nNGN BALANCE: " + str(new_balance)
+            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L: <b>+"+ str(((self.trading_amt*perc_profit)/100)) + " ("+str(perc_profit)+"%)</b>\n\nNEW BALANCE: " + str(new_balance)
         else:
             new_balance = (self.total_bal - self.trading_amt)
-            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L: <b>-"+ str(self.trading_amt) + "</b>\n\nNGN BALANCE: " + str(new_balance)
+            state = "TRADE AMOUNT: <b>"+str(self.trading_amt)+"</b>\nP/L: <b>-"+ str(self.trading_amt) + "</b>\n\nNEW BALANCE: " + str(new_balance)
 
         return { "state": state, "new_balance": new_balance }
 

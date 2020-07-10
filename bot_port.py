@@ -160,7 +160,7 @@ main_menu = [
 def start(update, context):
 	user = update.message.from_user
 
-	reply_markup = ReplyKeyboardMarkup(main_menu, one_time_keyboard=True, resize_keyboard=True)
+	reply_markup = ReplyKeyboardMarkup(main_menu, one_time_keyboard=False, resize_keyboard=True)
 
 	update.message.reply_text(
 		"{}, welcome to Oreo Crypt.\n\nThis bot helps you trade binary options and also acquire bitcoin and other crypto currencies\n\n".format(user.first_name),
@@ -353,6 +353,19 @@ def activate_ngn(update, context):
 
 	# database functions
 	binary_db = BinaryDB()
+
+	# check if a deposit has been made into the the ngn account
+	res = binary_db.db.users.find_one({"tgram_uid": query.message.chat_id}, ['account'])
+	if res['account']['ngn_balance'] <= 0:
+		bot.edit_message_text(
+			chat_id=query.message.chat_id,
+			message_id=query.message.message_id,
+			text="You have to make a deposit before activating your NGN account",
+			reply_markup=reply_markup
+		)
+
+		return THIRD
+
 	res = binary_db.switch_acount(query.message.chat_id, 'ngn')
 	print(res)
 	context.user_data['default_acct'] = res['active_acct']
